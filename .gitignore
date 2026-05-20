@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python (if you use it)
+__pycache__/
+*.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings (optional)
+.vscode/
+
+# Large data files (VERY important for DV projects)
+*.csv
+*.xlsx
+*.json
+
+# If you want to KEEP specific datasets, ignore only temp ones instead
+# temp/
+# output/
+
+# Logs
+*.log

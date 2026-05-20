@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 400,
+  "height": 300,
+
+  "data": {
+    "url": "data/UCS-Satellite-Database.csv"
+  },
+
+  "params": [
+    {
+      "name": "purposeSelect",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Communications",
+          "Earth Observation"
+        ],
+        "name": "Satellite Purpose: "
+      },
+      "value": "Communications"
+    }
+  ],
+
+  "transform": [
+
+    {
+      "filter": "datum.Purpose == purposeSelect"
+    },
+
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "count"
+        }
+      ],
+      "groupby": ["Country of Operator/Owner"]
+    },
+
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "count",
+          "order": "descending"
+        }
+      ]
+    },
+
+    {
+      "filter": "datum.rank <= 10"
+    }
+
+  ],
+
+  "mark": "bar",
+
+  "encoding": {
+
+    "y": {
+      "field": "Country of Operator/Owner",
+      "type": "nominal",
+      "sort": "-x"
+    },
+
+    "x": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Number of Satellites"
+    },
+
+    "tooltip": [
+      {
+        "field": "Country of Operator/Owner"
+      },
+      {
+        "field": "count"
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 340, 
+  "height": 300,
+
+  "data": {
+    "url": "data/UCS-Satellite-Database.csv"
+  },
+
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "Count"
+        }
+      ],
+      "groupby": ["Purpose"]
+    },
+
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "Count",
+          "order": "descending"
+        }
+      ]
+    },
+
+    {
+      "filter": "datum.rank <= 10"
+    }
+  ],
+
+  "mark": "bar",
+
+  "encoding": {
+
+    "y": {
+      "field": "Purpose",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Satellite Purpose"
+    },
+
+    "x": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Number of Satellites"
+    },
+
+    "color": {
+      "field": "Purpose",
+      "type": "nominal",
+      "scale": {
+        "scheme": "tableau10"
+      },
+      "legend": null
+    },
+
+    "tooltip": [
+      {
+        "field": "Purpose",
+        "type": "nominal"
+      },
+      {
+        "field": "Count",
+        "type": "quantitative"
+      }
+    ]
+  }
+}

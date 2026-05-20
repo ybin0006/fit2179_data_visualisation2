@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 300,
+  "height": 300,
+
+  "data": {
+    "url": "data/UCS-Satellite-Database.csv"
+  },
+
+  "transform": [
+  {
+    "joinaggregate": [
+      {"op": "count", "as": "operator_total"}
+    ],
+    "groupby": ["Country of Operator/Owner"]
+  },
+  {
+    "joinaggregate": [
+      {"op": "count", "as": "contractor_total"}
+    ],
+    "groupby": ["Country of Contractor"]
+  },
+  {
+    "filter": "datum.operator_total > 30 && datum.contractor_total > 30"
+  },
+  {
+    "aggregate": [
+      {"op": "count", "as": "count"}
+    ],
+    "groupby": [
+      "Country of Operator/Owner",
+      "Country of Contractor"
+    ]
+  }
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "Country of Contractor",
+      "type": "nominal",
+      "title": "Contractor Country"
+    },
+    "y": {
+      "field": "Country of Operator/Owner",
+      "type": "nominal",
+      "title": "Operator Country"
+    },
+    "color": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Number of Satellites",
+      "scale": {"scheme": "blues"}
+    },
+    "tooltip": [
+      {"field": "Country of Operator/Owner"},
+      {"field": "Country of Contractor"},
+      {"field": "count"}
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 500,
+
+  "projection": {
+    "type": "equalEarth"
+  },
+
+  "layer": [
+    {
+      "data": {
+        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e6e6e6",
+        "stroke": "white"
+      }
+    },
+
+    {
+      "data": {
+        "url": "data/launch_sites_coordinates.csv"
+      },
+
+      "mark": {
+        "type": "circle",
+        "tooltip": true
+      },
+
+      "encoding": {
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+
+        "size": {
+          "field": "Launches",
+          "type": "quantitative",
+          "scale": { "range": [50, 2000] },
+          "legend": {
+            "title": "Number of Launches"
+          }
+        },
+
+        "color": {
+          "field": "Country",
+          "type": "nominal"
+        },
+
+        "tooltip": [
+          {"field": "Launch Site", "type": "nominal"},
+          {"field": "Country", "type": "nominal"},
+          {"field": "Launches", "type": "quantitative"}
+        ]
+      },
+
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "on": "mouseover"
+          }
+        }
+      ]
+
+
+    }
+  ]
+}

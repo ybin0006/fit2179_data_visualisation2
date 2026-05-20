@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A line chart showing the annual number of objects launched into outer space globally.",
+  "data": {
+    "url": "data/yearly-number-of-objects-launched-into-outer-space.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Entity === 'World' || datum.Code === 'OWID_WRL'"
+    }
+  ],
+  "width": 400, 
+  "height": 300,
+  "mark": {
+    "type": "line",
+    "color": "#007acc",
+    "strokeWidth": 2.5,
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "timeUnit": "year",
+      "title": "Year"
+    },
+    "y": {
+      "field": "Annual number of objects launched into outer space",
+      "type": "quantitative",
+      "title": "Objects Launched"
+    }
+  }
+}

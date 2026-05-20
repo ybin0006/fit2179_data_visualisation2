@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>        
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+        <script src="main_vg.js" defer></script>
+
+        <title>Space Exploration Dahsboard</title>
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+        <header class="mission-header"> 
+            <div class="telemetry-tag">FIT2179 | DATA VISUALISATION</div>
+            <h1>Space Exploration Analysis</h1>
+            <p class="lead-text">
+                An interactive telemetry dashboard monitoring historical launches, orbital assets, and national aerospace capabilities.
+            </p>
+        </header>
+
+        <main class="dashboard-container">
+            
+            <section class="dashboard-section">
+                <h2 class="section-title">Global Overview</h2>
+                
+                <div class="charts-grid-container">
+                    <div class="chart-card">
+                        <h2>Objects Launched Into Space Over Time</h2>
+                        <div id="chart1" class="vega-chart"></div>
+                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                    </div>
+
+                    <div class="chart-card">
+                        <h2>Primary Mission Objectives</h2>
+                        <div id="chart3" class="vega-chart"></div> 
+                        <p class="chart-explanation">Categorization of orbital assets by operational intent (e.g., Comms, Science, Defense).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h2 class="section-title">National Aerospace Comparison</h2>
+                
+                <div class="chart-card full-width">
+                    <h2>Objects Launched Into Space by Nation</h2>
+                    <div id="chart2" class="vega-chart"></div> 
+                    <p class="chart-explanation">Comparative analysis of cumulative orbital injections by sovereign entities.</p>
+                </div>
+
+                <div class="charts-grid-container">
+                    <div class="chart-card">
+                        <h2>Countries vs Satellite Purpose</h2>
+                        <div id="chart4" class="vega-chart"></div>
+                        <p class="chart-explanation">Cross-referencing state actors against their primary orbital domain specializations.</p>
+                    </div> 
+
+                    <div class="chart-card">
+                        <h2>Operator Country vs Contractor Country</h2>
+                        <div id="chart5" class="vega-chart"></div>
+                        <p class="chart-explanation">Mapping the supply chain and operational pipelines between hardware builders and operators.</p>
+                    </div> 
+                </div>
+            </section>
+
+            <section class="dashboard-section australia-section">
+                <h2 class="section-title sector-accent">Australia Space Analysis</h2>
+                <p class="lead-text">Evaluating Southern Hemisphere aerospace growth and localized telemetry data.</p>
+            </section>
+
+        </main>
+
+        <footer class="references-section">
+            <div class="references-container">
+                
+                <p class="author-credit">BY YASMIN BINTI SAPAR</p>
+                <h2>REFERENCES</h2>    
+
+                <ol>
+                <li>
+                    Annual number of objects launched into space. (2025). Our World in Data. 
+                    <a href="https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space?tab=map#reuse-this-work" target="_blank" rel="noopener">
+                    https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space?tab=map#reuse-this-work
+                    </a>
+                </li>
+                <li>
+                    UCS Satellite Database. (2023). Union of Concerned Scientists. 
+                    <a href="https://www.ucs.org/resources/satellite-database" target="_blank" rel="noopener">
+                    https://www.ucs.org/resources/satellite-database
+                    </a>
+                </li>
+                </ol>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+            
+    </body>
+</html>

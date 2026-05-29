@@ -22,13 +22,26 @@ body::before {
   height: 100%;
   
   /* Use your fixed stars image here */
-  background-image: url("../images/stars.jpg");
+  background-image: url("images/stars.jpg");
   background-repeat: repeat;
   background-size: 800px 800px; /* Adjust based on your image size */
   opacity: 0.5;
   mix-blend-mode: screen;
   z-index: -2;
   pointer-events: none;
+
+/* Trigger the slow moving animation */
+  animation: spaceTravel 120s linear infinite;
+}
+
+/* The Keyframe rule that moves the background positions */
+@keyframes spaceTravel {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 800px 1600px; /* Moves diagonally over time */
+  }
 }
 
 /* The Keyframe rule that moves the background positions */

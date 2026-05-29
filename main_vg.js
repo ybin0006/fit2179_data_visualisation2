@@ -34,3 +34,15 @@ var vg_5 = "charts/owner_contractor.vg.json";
 vegaEmbed("#chart5", vg_5).then(function(result) {
 // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
 }).catch(console.error);
+
+var vg_6 = "charts/aus_satellites_over_time.vg.json";
+
+vegaEmbed("#chart6", vg_6).then(function(result) {
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+}).catch(console.error);
+
+var vg_7 = "charts/aus_mass_year.vg.json";
+
+vegaEmbed("#chart7", vg_7).then(function(result) {
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+}).catch(console.error);

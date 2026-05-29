@@ -9,7 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-        <script src="main_vg.js" defer></script>
+        <script src="main_vg.js"></script>
 
         <title>Space Exploration Dahsboard</title>
         <link rel="stylesheet" href="style.css">
@@ -23,7 +23,7 @@
             <h1>Space Exploration Analysis</h1>
             <p class="lead-text">
                 An interactive telemetry dashboard monitoring historical launches, orbital assets, and national aerospace capabilities.
-            </p>
+            </p> 
         </header>
 
         <main class="dashboard-container">
@@ -73,6 +73,20 @@
             <section class="dashboard-section australia-section">
                 <h2 class="section-title sector-accent">Australia Space Analysis</h2>
                 <p class="lead-text">Evaluating Southern Hemisphere aerospace growth and localized telemetry data.</p>
+
+                <div class="charts-grid-container">
+                    <div class="chart-card">
+                        <h2>Australia's Sattelites Over Time</h2>
+                        <div id="chart6" class="vega-chart"></div>
+                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                    </div>
+
+                    <div class="chart-card">
+                        <h2>Australia's Satellite Mass vs Launch Year</h2>
+                        <div id="chart7" class="vega-chart"></div>
+                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                    </div>
+                </div>
             </section>
 
         </main>
@@ -80,7 +94,7 @@
         <footer class="references-section">
             <div class="references-container">
                 
-                <p class="author-credit">BY YASMIN BINTI SAPAR</p>
+                <p class="author-credit">BY YASMIN BINTI SAPAR | 36857548</p>
                 <h2>REFERENCES</h2>    
 
                 <ol>

@@ -35,7 +35,7 @@
 
   "mark": {
     "type": "line",
-    "color": "#f8bc04",
+    "color": "#5591a9",
     "strokeWidth": 2.5,
     "tooltip": true
   },

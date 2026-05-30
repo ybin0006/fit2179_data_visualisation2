@@ -1,61 +1,84 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
+  "description": "Heatmap of contractor vs owner country, sorted by volume.",
+  "data": { "url": "data/UCS-Satellite-Database.csv" },
   "width": 300,
   "height": 300,
-
-  "data": {
-    "url": "data/UCS-Satellite-Database.csv"
-  },
-
   "transform": [
-  {
-    "joinaggregate": [
-      {"op": "count", "as": "operator_total"}
-    ],
-    "groupby": ["Country of Operator/Owner"]
-  },
-  {
-    "joinaggregate": [
-      {"op": "count", "as": "contractor_total"}
-    ],
-    "groupby": ["Country of Contractor"]
-  },
-  {
-    "filter": "datum.operator_total > 30 && datum.contractor_total > 30"
-  },
-  {
-    "aggregate": [
-      {"op": "count", "as": "count"}
-    ],
-    "groupby": [
-      "Country of Operator/Owner",
-      "Country of Contractor"
-    ]
-  }
+    {
+      "joinaggregate": [{"op": "count", "as": "operator_total"}],
+      "groupby": ["Country of Operator/Owner"]
+    },
+    {
+      "joinaggregate": [{"op": "count", "as": "contractor_total"}],
+      "groupby": ["Country of Contractor"]
+    },
+    {
+      "filter": "datum.operator_total > 30 && datum.contractor_total > 30"
+    },
+    {
+      "aggregate": [{"op": "count", "as": "count"}],
+      "groupby": [
+        "Country of Operator/Owner",
+        "Country of Contractor"
+      ]
+    }
   ],
-  "mark": "rect",
+  "mark": {
+    "type": "rect",
+    "stroke": "#eeeeee",
+    "strokeWidth": 0.5
+  },
   "encoding": {
     "x": {
       "field": "Country of Contractor",
       "type": "nominal",
-      "title": "Contractor Country"
+      "title": "Contractor Country",
+      "axis": {"labelAngle": -45, "orient": "bottom"},
+      "sort": {
+        "op": "sum",
+        "field": "count",
+        "order": "descending"
+      }
     },
     "y": {
       "field": "Country of Operator/Owner",
       "type": "nominal",
-      "title": "Operator Country"
+      "title": "Operator Country",
+      "sort": {
+        "op": "sum",
+        "field": "count",
+        "order": "ascending"
+      }
     },
     "color": {
       "field": "count",
       "type": "quantitative",
       "title": "Number of Satellites",
-      "scale": {"scheme": "blues"}
+      "scale": {
+        "type": "log",
+        "range": [
+          "#ced7e0",
+          "#9ccddc",
+          "#5591a9",
+          "#054569",
+          "#062c43"
+        ]
+      }
     },
     "tooltip": [
       {"field": "Country of Operator/Owner"},
       {"field": "Country of Contractor"},
       {"field": "count"}
     ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "scale": {
+      "bandPaddingInner": 0,
+      "bandPaddingOuter": 0
+    }
   }
 }

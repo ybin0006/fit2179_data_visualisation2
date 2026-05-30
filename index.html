@@ -17,13 +17,19 @@
     </head>
 
     <body>
-
-        <header class="mission-header"> 
-            <div class="telemetry-tag">FIT2179 | DATA VISUALISATION</div>
-            <h1>Space Exploration Analysis</h1>
-            <p class="lead-text">
-                An interactive telemetry dashboard monitoring historical launches, orbital assets, and national aerospace capabilities.
-            </p> 
+        <header class="nasa-divider-banner global-banner">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <div class="banner-tag">
+                    <span class="tag-icon">★</span> FIT2179 | DATA VISUALISATION II
+                </div>
+                <h2 class="banner-title">Eyes on the Cosmos:<br>Space Exploration</h2>
+                <p class="banner-description">
+                    From early state-sponsored cold war rocketry to the exploding modern landscape of private mega-constellations, 
+                    track how humankind has permanently populated low Earth orbit.
+                </p>
+                <a href="#global-focus" class="banner-link">Launch Telemetry Overview <span class="arrow">→</span></a>
+            </div>
         </header>
 
         <main class="dashboard-container">
@@ -35,13 +41,13 @@
                     <div class="chart-card">
                         <h2>Objects Launched Into Space Over Time</h2>
                         <div id="chart1" class="vega-chart"></div>
-                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                        <p class="chart-explanation">For nearly six decades, global space launches maintained a remarkably steady, low-volume baseline. However, the period following 2015 marks the dawn of the "New Space" era, characterized by an unprecedented exponential explosion in objects sent into orbit.</p>
                     </div>
 
                     <div class="chart-card">
                         <h2>Primary Mission Objectives</h2>
                         <div id="chart3" class="vega-chart"></div> 
-                        <p class="chart-explanation">Categorization of orbital assets by operational intent (e.g., Comms, Science, Defense).</p>
+                        <p class="chart-explanation">An overwhelming imbalance in the global satellite ecosystem can be seen from this chart. The vast majority of satellites orbiting Earth are dedicated to a single purpose: Communications. Traditional space missions like scientific discovery and global navigation are heavily eclipsed by our massive global demand for commercial connectivity and planet imaging.</p>
                     </div>
                 </div>
             </section>
@@ -59,38 +65,55 @@
                     <div class="chart-card">
                         <h2>Countries vs Satellite Purpose</h2>
                         <div id="chart4" class="vega-chart"></div>
-                        <p class="chart-explanation">Cross-referencing state actors against their primary orbital domain specializations.</p>
+                        <p class="chart-explanation">The international landscape is overwhelmingly dominated by USA and followed China. This shows that only the US and China currently possess the vast infrastructure and capital required to deploy and maintain massive, comprehensive planet-monitoring constellations.</p>
                     </div> 
 
                     <div class="chart-card">
                         <h2>Operator Country vs Contractor Country</h2>
                         <div id="chart5" class="vega-chart"></div>
-                        <p class="chart-explanation">Mapping the supply chain and operational pipelines between hardware builders and operators.</p>
+                        <p class="chart-explanation">Most major spacefaring nations act as their own primary contractors. For superpowers like the USA and China. Space infrastructure is considered critical national infrastructure, meaning governments heavily incentivize or mandate that domestic aerospace firms handle construction to protect intellectual property and defense secrets.</p>
                     </div> 
                 </div>
             </section>
 
+            <!-- NEW NASA-STYLE BREAK SECTION -->
+            <section class="nasa-divider-banner">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <div class="banner-tag">
+                        <span class="tag-icon">★</span> REGIONAL FOCUS
+                    </div>
+                    <h2 class="banner-title">Down Under Dawn:<br>Australia’s Emerging Space Frontier</h2>
+                    <p class="banner-description">
+                        From deep-space tracking stations in the outback to an accelerating commercial market, 
+                        explore how the Southern Hemisphere is shifting global orbital telemetry.
+                    </p>
+                    <a href="#australia-focus" class="banner-link">Explore Regional Telemetry <span class="arrow">→</span></a>
+                </div>
+            </section>
+            
             <section class="dashboard-section australia-section">
                 <h2 class="section-title sector-accent">Australia Space Analysis</h2>
-                <p class="lead-text">Evaluating Southern Hemisphere aerospace growth and localized telemetry data.</p>
-
+                
                 <div class="chart-card full-width">
                     <h2>Australia's Space & Tracking Facilities Map</h2>
                     <div id="chart11" class="vega-chart"></div>
                     <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
                 </div>
+                
+                <h2 class="section-title sector-accent">Regional Aerospace Comparison</h2>
 
                 <div class="charts-grid-container">
                     <div class="chart-card">
                         <h2>Australia's Sattelites Over Time</h2>
                         <div id="chart6" class="vega-chart"></div>
-                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                        <p class="chart-explanation">Australia has transitioned from a passive consumer of space technology to an active, sovereign builder of satellite constellations. The sheer density of the bars from 2021 onward indicates a thriving, commercialized domestic space ecosystem driven heavily by private enterprises like Skykraft and Fleet Space alongside modernized defense initiatives.</p>
                     </div>
 
                     <div class="chart-card">
                         <h2>Number of Satellites by Mission Type</h2>
                         <div id="chart9" class="vega-chart"></div>
-                        <p class="chart-explanation">All Australian-owned satellites have been categorised as either non-profit, or commercial satellites. Commercial satellites account more in percentage. This may be due to faster innovation and development of satellites in the commercial sector from financial backing. Furthermore, lack of or downfalls in particular Australian Satellite capability may have created a growing market for satellite-based solutions for companies in the industry sector to provide services through the space industry.</p>
+                        <p class="chart-explanation">Australia's commercial satellites account more in percentage. This may be due to faster innovation and development of satellites in the commercial sector from financial backing. Furthermore, lack of or downfalls in particular Australian Satellite capability may have created a growing market for satellite-based solutions for companies in the industry sector to provide services through the space industry.</p>
                     </div>
                 </div>
                 
@@ -98,13 +121,13 @@
                     <div class="chart-card">
                         <h2>Operator of Australia's Satellites</h2>
                         <div id="chart10" class="vega-chart"></div>
-                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                        <p class="chart-explanation">A multitude of Australian Universities predominantly attributed to the 9 and more non-profit Australian operated satellites. This graph represents the fact that Australia has the ability to develop and launch satellites, reflecting the in-house capability.</p>
                     </div> 
                     
                     <div class="chart-card">
                         <h2>Australia's Satellite Mass vs Launch Year</h2>
                         <div id="chart7" class="vega-chart"></div>
-                        <p class="chart-explanation">Historical trajectory of payload deployments since the dawn of the space age.</p>
+                        <p class="chart-explanation">GEO satellites are generally heavier than LEO satellites because they require much more fuel to reach higher orbits and maintain a fixed position above Earth. They also carry larger payloads, including powerful antennas, solar arrays, and communication systems to cover wide areas continuously.</p>
                     </div>
                 </div>
 
@@ -132,15 +155,21 @@
                     </a>
                 </li>
                 <li>
-                    UCS Satellite Database. (2023). Union of Concerned Scientists. 
-                    <a href="https://www.ucs.org/resources/satellite-database" target="_blank" rel="noopener">
-                    https://www.ucs.org/resources/satellite-database
-                    </a>
-                </li>
-                <li>
                     Australian-Owned Satellite Database | UNSW Canberra Space - UNSW Canberra. (2026). UNSW Sites.
                     <a href="https://www.unsw.edu.au/canberra/our-research/research-centres-institutes/unsw-canberra-space/our-research" rel="noopener">
                     https://www.unsw.edu.au/canberra/our-research/research-centres-institutes/unsw-canberra-space/our-research
+                    </a>
+                </li>
+                <li>
+                    NASA. (2025). National Aeronautics and Space Administration. NASA; NASA.  
+                    <a href="https://www.nasa.gov/" target="_blank" rel="noopener">
+                    https://www.nasa.gov/
+                    </a>
+                </li>
+                <li>
+                    UCS Satellite Database. (2023). Union of Concerned Scientists. 
+                    <a href="https://www.ucs.org/resources/satellite-database" target="_blank" rel="noopener">
+                    https://www.ucs.org/resources/satellite-database
                     </a>
                 </li>
                 </ol>

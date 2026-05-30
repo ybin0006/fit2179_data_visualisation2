@@ -65,7 +65,7 @@
 
   "mark": {
     "type": "bar",
-    "color": "#f8bc04"
+    "color": "#9ccddc"
   },
 
   "encoding": {

@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: "inter", sans-serif;
@@ -25,7 +24,7 @@ body::before {
   background-image: url("images/stars.jpg");
   background-repeat: repeat;
   background-size: 800px 800px; /* Adjust based on your image size */
-  opacity: 0.5;
+  opacity: 0.3;
   mix-blend-mode: screen;
   z-index: -2;
   pointer-events: none;
@@ -54,40 +53,132 @@ body::before {
   }
 }
 
-/* --- HEADER DESIGN --- */
-.mission-header {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, rgba(11, 15, 25, 0.9) 0%, rgba(2, 4, 8, 0) 100%);
-  border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-  margin-bottom: 40px;
+/* ----- NASA DIVIDER BANNER ----- */
+.nasa-divider-banner {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-bottom: 80px;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+  
+  /* Background image setting inspired by image_d4b941.jpg */
+  background-image: url(images/webb-tarantula-neb.png); /* Replace with a landscape/outback space graphic if available */
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 170, 0, 0.2); /* Subtle transition to Australia's gold accent */
 }
 
-.telemetry-tag {
-  font-family: "inter", sans-serif;
-  font-size: 0.75rem;
-  color: #ff3e3e; 
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+/* Dark, dramatic gradient overlay to match image_d4b941.jpg's lighting */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.75) 50%, rgba(2, 4, 8, 0.4) 100%);
+  z-index: 1;
 }
 
-h1 {
-  font-family: "inter", sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-  margin: 0 0 15px 0;
-}
-
-.lead-text {
-  color: #94a3b8;
-  max-width: 700px;
+/* Content Container wrapper to align cleanly with the dashboard's max width */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1360px; /* Aligns visually with the 1400px container minus padding */
+  width: 100%;
   margin: 0 auto;
-  font-size: 1.1rem;
+  padding: 0 40px;
+  box-sizing: border-box;
 }
+
+/* Small label tracking closely to image_d4b941.jpg's 'FEATURED STORY' */
+.banner-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner-tag .tag-icon {
+  font-size: 0.65rem;
+  color: #ffaa00; /* Australia Accent Gold */
+}
+
+/* Bold, cinematic headline sizing */
+.banner-title {
+  font-family: "inter", sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+  max-width: 750px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 2rem;
+  }
+}
+
+/* Descriptive micro-narrative paragraph text */
+.banner-description {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  max-width: 580px;
+  margin: 0 0 30px 0;
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Call-to-action interface element */
+.banner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.banner-link .arrow {
+  display: inline-block;
+  background-color: #ff3e3e; /* Red button dot element */
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.banner-link:hover {
+  color: #ffaa00;
+}
+
+.banner-link:hover .arrow {
+  background-color: #ffaa00;
+  transform: translateX(4px);
+}
+
 
 /* --- LAYOUT & CONTAINERS --- */
 .dashboard-container {
@@ -129,7 +220,7 @@ h1 {
 .chart-card {
   background: rgba(13, 18, 30, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-top: 3px solid #105bd8; /* Space Shuttle Blue Accent */
+  border-top: 3px solid #fff; /* Space Shuttle Blue Accent */
   border-radius: 4px;
   padding: 25px;
   backdrop-filter: blur(10px);
@@ -138,7 +229,7 @@ h1 {
 }
 
 .chart-card:hover {
-  border-color: #fff;
+  border-color: #105bd8;
   box-shadow: 0 10px 35px rgba(0, 212, 255, 0.1);
 }
 
@@ -182,6 +273,15 @@ h1 {
 .sector-accent {
   color: #ffaa00;
   border-left-color: #ffaa00;
+  margin-bottom: 30px;
+}
+
+.text-explanation {
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 
 /* --- PERFECT CHART CENTERING --- */

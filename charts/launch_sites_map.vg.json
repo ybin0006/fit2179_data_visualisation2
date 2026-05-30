@@ -1,110 +1,55 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
-  "description": "Working choropleth of space launches by country.",
-
-  "width": 900,
-  "height": 500,
-
+  "title": "Total Objects Launched into Outer Space (2023)",
+  "width": 800,
+  "height": 400,
   "projection": {
     "type": "equalEarth"
   },
-
-  "params": [
-    {
-      "name": "YearSelect",
-      "value": 2025,
-      "bind": {
-        "input": "range",
-        "min": 1957,
-        "max": 2025,
-        "step": 1,
-        "name": "Year: "
-      }
-    }
-  ],
-
   "layer": [
     {
       "data": {
-        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
-        "format": {
-          "type": "topojson",
-          "feature": "countries"
-        }
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#f2f2f2",
-        "stroke": "#cccccc"
+        "fill": "#eaeaea",
+        "stroke": "white"
       }
     },
-
     {
       "data": {
-        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
-        "format": {
-          "type": "topojson",
-          "feature": "countries"
-        }
+        "url": "data/yearly-number-of-objects-launched-into-outer-space.csv"
       },
-
       "transform": [
         {
-          "lookup": "id",
+          "filter": "datum.Year === 2023"
+        },
+        {
+          "lookup": "Code",
           "from": {
             "data": {
-              "url": "https://vega.github.io/vega-datasets/data/world-110m-country-names.tsv",
-              "format": { "type": "tsv" }
+              "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+              "format": {"type": "topojson", "feature": "countries"}
             },
-            "key": "id",
-            "fields": ["name"]
-          }
-        },
-
-        {
-          "lookup": "name",
-          "from": {
-            "data": {
-              "url": "data/yearly-number-of-objects-launched-into-outer-space.csv"
-            },
-            "key": "Entity",
-            "fields": ["Year", "Annual number of objects launched into outer space"]
-          }
-        },
-
-        {
-          "filter": "datum.Year != null && datum.Year <= YearSelect"
-        },
-
-        {
-          "aggregate": [
-            {
-              "op": "sum",
-              "field": "Annual number of objects launched into outer space",
-              "as": "TotalLaunches"
-            }
-          ],
-          "groupby": ["id", "name"]
+            "key": "id"
+          },
+          "as": "geo"
         }
       ],
-
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#555"
-      },
-
+      "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
         "color": {
-          "field": "TotalLaunches",
+          "field": "Annual number of objects launched into outer space",
           "type": "quantitative",
-          "scale": {
-            "scheme": "oranges"
-          }
+          "title": "Launches",
+          "scale": {"scheme": "purples"}
         },
         "tooltip": [
-          { "field": "name", "type": "nominal" },
-          { "field": "TotalLaunches", "type": "quantitative" }
+          {"field": "Entity", "type": "nominal", "title": "Country"},
+          {"field": "Annual number of objects launched into outer space", "type": "quantitative", "title": "Launches"}
         ]
       }
     }

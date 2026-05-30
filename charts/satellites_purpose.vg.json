@@ -1,11 +1,25 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Horinzontal bar chart of primary mission of objects launched.",
+  "description": "Horizontal bar chart of primary mission of objects launched with interactive zoom slider.",
   "data": {
     "url": "data/UCS-Satellite-Database.csv"
   },
   "width": 340, 
   "height": 300,
+
+  "params": [
+    {
+      "name": "zoomMax",
+      "value": 6000,
+      "bind": {
+        "input": "range",
+        "min": 50,
+        "max": 6000,
+        "step": 50,
+        "name": "Zoom X-Axis: "
+      }
+    }
+  ],
 
   "transform": [
     {
@@ -17,7 +31,6 @@
       ],
       "groupby": ["Purpose"]
     },
-
     {
       "window": [
         {
@@ -32,7 +45,6 @@
         }
       ]
     },
-
     {
       "filter": "datum.rank <= 10"
     }
@@ -58,7 +70,10 @@
         "x": {
           "field": "Count",
           "type": "quantitative",
-          "title": "Number of Satellites"
+          "title": "Number of Satellites",
+          "scale": {
+            "domain": [0, {"expr": "zoomMax"}]
+          }
         },
         "color": {
           "field": "Purpose",
@@ -66,7 +81,18 @@
           "legend": null,
           "scale": {
             "domain": ["Communications", "Earth Observation", "Technology Development", "Navigation/Global Positioning", "Space Science", "Technology Demonstration", "Earth Science", "Surveillance", "Navigation/Regional Positioning", "Unknown"],
-            "range": ["#F8BC04", "#A44322", "#C72C41", "#530F1E", "#013026", "#1B1035", "#146C94", "#0B3C5D", "#051427", "#000000"]
+            "range": [
+              "#020408",
+              "#0b1f3a",
+              "#062c43",
+              "#054569",
+              "#0f5c7a",
+              "#146c94",
+              "#4f90a8",
+              "#9ccddc",
+              "#f2c14e",
+              "#f8bc04"
+            ]
           }
         },
         "tooltip": [
@@ -93,6 +119,5 @@
         }
       }
     }
-]
-
+  ]
 }

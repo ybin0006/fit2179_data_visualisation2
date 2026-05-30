@@ -1,11 +1,28 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "description": "Working choropleth of space launches by country.",
+
   "width": 900,
   "height": 500,
 
   "projection": {
     "type": "equalEarth"
   },
+
+  "params": [
+    {
+      "name": "YearSelect",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 1957,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
 
   "layer": [
     {
@@ -16,67 +33,80 @@
           "feature": "countries"
         }
       },
-
       "mark": {
         "type": "geoshape",
-        "fill": "#e6e6e6",
-        "stroke": "white"
+        "fill": "#f2f2f2",
+        "stroke": "#cccccc"
       }
     },
 
     {
       "data": {
-        "url": "data/launch_sites_coordinates.csv"
+        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
 
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "https://vega.github.io/vega-datasets/data/world-110m-country-names.tsv",
+              "format": { "type": "tsv" }
+            },
+            "key": "id",
+            "fields": ["name"]
+          }
+        },
+
+        {
+          "lookup": "name",
+          "from": {
+            "data": {
+              "url": "data/yearly-number-of-objects-launched-into-outer-space.csv"
+            },
+            "key": "Entity",
+            "fields": ["Year", "Annual number of objects launched into outer space"]
+          }
+        },
+
+        {
+          "filter": "datum.Year != null && datum.Year <= YearSelect"
+        },
+
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "Annual number of objects launched into outer space",
+              "as": "TotalLaunches"
+            }
+          ],
+          "groupby": ["id", "name"]
+        }
+      ],
+
       "mark": {
-        "type": "circle",
-        "tooltip": true
+        "type": "geoshape",
+        "stroke": "#555"
       },
 
       "encoding": {
-        "longitude": {
-          "field": "Longitude",
-          "type": "quantitative"
-        },
-
-        "latitude": {
-          "field": "Latitude",
-          "type": "quantitative"
-        },
-
-        "size": {
-          "field": "Launches",
-          "type": "quantitative",
-          "scale": { "range": [50, 2000] },
-          "legend": {
-            "title": "Number of Launches"
-          }
-        },
-
         "color": {
-          "field": "Country",
-          "type": "nominal"
-        },
-
-        "tooltip": [
-          {"field": "Launch Site", "type": "nominal"},
-          {"field": "Country", "type": "nominal"},
-          {"field": "Launches", "type": "quantitative"}
-        ]
-      },
-
-      "params": [
-        {
-          "name": "hover",
-          "select": {
-            "type": "point",
-            "on": "mouseover"
+          "field": "TotalLaunches",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "oranges"
           }
-        }
-      ]
-
-
+        },
+        "tooltip": [
+          { "field": "name", "type": "nominal" },
+          { "field": "TotalLaunches", "type": "quantitative" }
+        ]
+      }
     }
   ]
 }

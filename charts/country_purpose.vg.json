@@ -14,12 +14,15 @@
       "bind": {
         "input": "select",
         "options": [
+          "Earth Observation",
           "Communications",
-          "Earth Observation"
+          "Earth Science",
+          "Technology Development",
+          "Navigation/Global Positioning"
         ],
         "name": "Satellite Purpose: "
       },
-      "value": "Communications"
+      "value": "Earth Observation"
     }
   ],
 
@@ -60,7 +63,10 @@
 
   ],
 
-  "mark": "bar",
+  "mark": {
+    "type": "bar",
+    "color": "#f8bc04"
+  },
 
   "encoding": {
 

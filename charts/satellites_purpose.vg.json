@@ -1,12 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
-  "width": 340, 
-  "height": 300,
-
+  "description": "Horinzontal bar chart of primary mission of objects launched.",
   "data": {
     "url": "data/UCS-Satellite-Database.csv"
   },
+  "width": 340, 
+  "height": 300,
 
   "transform": [
     {
@@ -39,41 +38,61 @@
     }
   ],
 
-  "mark": "bar",
-
   "encoding": {
-
     "y": {
       "field": "Purpose",
       "type": "nominal",
       "sort": "-x",
-      "title": "Satellite Purpose"
-    },
-
-    "x": {
-      "field": "Count",
-      "type": "quantitative",
-      "title": "Number of Satellites"
-    },
-
-    "color": {
-      "field": "Purpose",
-      "type": "nominal",
-      "scale": {
-        "scheme": "tableau10"
-      },
-      "legend": null
-    },
-
-    "tooltip": [
-      {
-        "field": "Purpose",
-        "type": "nominal"
-      },
-      {
-        "field": "Count",
-        "type": "quantitative"
+      "title": "Satellite Purpose",
+      "axis": {
+        "labelFontSize": 8.9,  
+        "titleFontSize": 12,  
+        "labelLimit": 200     
       }
-    ]
-  }
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Count",
+          "type": "quantitative",
+          "title": "Number of Satellites"
+        },
+        "color": {
+          "field": "Purpose",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["Communications", "Earth Observation", "Technology Development", "Navigation/Global Positioning", "Space Science", "Technology Demonstration", "Earth Science", "Surveillance", "Navigation/Regional Positioning", "Unknown"],
+            "range": ["#F8BC04", "#A44322", "#C72C41", "#530F1E", "#013026", "#1B1035", "#146C94", "#0B3C5D", "#051427", "#000000"]
+          }
+        },
+        "tooltip": [
+          {"field": "Purpose", "type": "nominal"},
+          {"field": "Count", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "Count",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Count",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    }
+]
+
 }

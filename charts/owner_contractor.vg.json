@@ -79,6 +79,7 @@
     "scale": {
       "bandPaddingInner": 0,
       "bandPaddingOuter": 0
-    }
-  }
+    },
+    "background": "#eeede5"
+  } 
 }

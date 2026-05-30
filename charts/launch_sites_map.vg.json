@@ -1,11 +1,24 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Total Objects Launched into Outer Space (2023)",
+  "description": "Total Objects Launched into Outer Space",
   "width": 800,
   "height": 400,
   "projection": {
     "type": "equalEarth"
   },
+  "params": [
+    {
+      "name": "Select_Year",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -24,10 +37,10 @@
       },
       "transform": [
         {
-          "filter": "datum.Year === 2023"
+          "filter": "datum.Year == Select_Year"
         },
         {
-          "lookup": "Code",
+          "lookup": "Id",
           "from": {
             "data": {
               "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
@@ -45,7 +58,9 @@
           "field": "Annual number of objects launched into outer space",
           "type": "quantitative",
           "title": "Launches",
-          "scale": {"scheme": "purples"}
+          "scale": {
+            "range": ["#9ccddc", "#5591a9", "#054569", "#062c43"]
+          }
         },
         "tooltip": [
           {"field": "Entity", "type": "nominal", "title": "Country"},

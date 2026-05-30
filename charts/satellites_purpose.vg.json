@@ -55,7 +55,7 @@
       "field": "Purpose",
       "type": "nominal",
       "sort": "-x",
-      "title": "Satellite Purpose",
+      "title": "Purpose",
       "axis": {
         "labelFontSize": 8.9,  
         "titleFontSize": 12,  
@@ -70,7 +70,7 @@
         "x": {
           "field": "Count",
           "type": "quantitative",
-          "title": "Number of Satellites",
+          "title": "Objects Launched",
           "scale": {
             "domain": [0, {"expr": "zoomMax"}]
           }
@@ -80,19 +80,7 @@
           "type": "nominal",
           "legend": null,
           "scale": {
-            "domain": ["Communications", "Earth Observation", "Technology Development", "Navigation/Global Positioning", "Space Science", "Technology Demonstration", "Earth Science", "Surveillance", "Navigation/Regional Positioning", "Unknown"],
-            "range": [
-              "#020408",
-              "#0b1f3a",
-              "#062c43",
-              "#054569",
-              "#0f5c7a",
-              "#146c94",
-              "#4f90a8",
-              "#9ccddc",
-              "#f2c14e",
-              "#f8bc04"
-            ]
+            "range": ["#9ccddc", "#5591a9", "#054569", "#062c43"]
           }
         },
         "tooltip": [

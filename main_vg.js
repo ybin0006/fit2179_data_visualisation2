@@ -90,3 +90,12 @@ vegaEmbed("#chart11", vg_11, {
 }).then(function(result) {
 // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
 }).catch(console.error);
+
+
+var vg_12 = "charts/aus_nonprofit_purpose.vg.json";
+
+vegaEmbed("#chart12", vg_12, {
+    actions: false
+}).then(function(result) {
+// Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+}).catch(console.error);

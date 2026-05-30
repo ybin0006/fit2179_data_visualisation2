@@ -29,7 +29,7 @@ body::before {
   z-index: -2;
   pointer-events: none;
 
-/* Trigger the slow moving animation */
+  /* Trigger the slow moving animation */
   animation: spaceTravel 120s linear infinite;
 }
 
@@ -43,18 +43,9 @@ body::before {
   }
 }
 
-/* The Keyframe rule that moves the background positions */
-@keyframes spaceTravel {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 800px 1600px; /* Moves diagonally over time */
-  }
-}
-
-/* ----- NASA DIVIDER BANNER ----- */
+/* ----- CORE BANNER STRUCTURE ----- */
 .nasa-divider-banner {
+  opacity: 2.0;
   position: relative;
   width: 100vw;
   left: 50%;
@@ -66,9 +57,6 @@ body::before {
   display: flex;
   align-items: center;
   padding: 60px 0;
-  
-  /* Background image setting inspired by image_d4b941.jpg */
-  background-image: url(images/webb-tarantula-neb.png); /* Replace with a landscape/outback space graphic if available */
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
@@ -76,7 +64,7 @@ body::before {
   border-bottom: 1px solid rgba(255, 170, 0, 0.2); /* Subtle transition to Australia's gold accent */
 }
 
-/* Dark, dramatic gradient overlay to match image_d4b941.jpg's lighting */
+/* Dark, dramatic gradient overlay to match image lighting */
 .banner-overlay {
   position: absolute;
   top: 0;
@@ -98,7 +86,7 @@ body::before {
   box-sizing: border-box;
 }
 
-/* Small label tracking closely to image_d4b941.jpg's 'FEATURED STORY' */
+/* Small label tracking closely to 'FEATURED STORY' */
 .banner-tag {
   font-size: 0.75rem;
   font-weight: 700;
@@ -115,11 +103,9 @@ body::before {
   color: #ffaa00; /* Australia Accent Gold */
 }
 
-/* Bold, cinematic headline sizing */
+/* Generic typographic baselines for titles and descriptions */
 .banner-title {
   font-family: "inter", sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
   color: #ffffff;
   line-height: 1.15;
   margin: 0 0 20px 0;
@@ -128,23 +114,77 @@ body::before {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 768px) {
-  .banner-title {
-    font-size: 2rem;
-  }
-}
-
-/* Descriptive micro-narrative paragraph text */
 .banner-description {
-  font-size: 1.05rem;
   color: #cbd5e1;
   max-width: 580px;
   margin: 0 0 30px 0;
   line-height: 1.6;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  
 }
 
-/* Call-to-action interface element */
+
+/* ======================================================== */
+/* FIRST BANNER CUSTOMIZATION                              */
+/* ======================================================== */
+
+.banner-one {
+  background-image: url("images/webb-tarantula-neb.png");
+}
+
+.banner-one .banner-title {
+  font-size: 3.5rem; /* Large, cinematic header */
+  font-weight: 800;
+}
+
+.banner-one .banner-description {
+  font-size: 1.1rem;
+}
+
+
+/* ======================================================== */
+/* SECOND BANNER CUSTOMIZATION                             */
+/* ======================================================== */
+
+/* Assign the animation to the first banner */
+.banner-two {
+  /* "bannerSlideshow" = the animation name
+     "15s" = total time for one full loop
+     "infinite" = keeps it looping forever
+  */
+  animation: bannerSlideshow 15s infinite;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+/* Define the images and when they should appear */
+@keyframes bannerSlideshow {
+  0%, 25% {
+    background-image: url("images/webb-tarantula-neb.png");
+  }
+  33%, 55% {
+    background-image: url("images/hubble.png");
+  }
+  65%, 85% {
+    background-image: url("images/mane.jpg"); /* Add a third image path if you like */
+  }
+  91%, 100% {
+    background-image: url("images/cotton_candy.jpg"); /* Loop back to the first image */
+  }
+}
+
+.banner-two .banner-title {
+  font-size: 2.5rem; /* Slightly smaller for structural variance */
+  font-weight: 700;
+}
+
+.banner-two .banner-description {
+  font-size: 0.95rem;
+}
+
+
+/* --- BANNER CTA LINKS --- */
 .banner-link {
   display: inline-flex;
   align-items: center;
@@ -216,6 +256,7 @@ body::before {
   }
 }
 
+
 /* --- THE NASA "CARD" UI --- */
 .chart-card {
   background: rgba(13, 18, 30, 0.75);
@@ -249,43 +290,8 @@ body::before {
   letter-spacing: 1px;
 }
 
-/* Vega Chart Containers */
-.vega-chart {
-  background: rgba(5, 7, 12, 0.6);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 350px; /* Gives room for charts to load */
-}
 
-.chart-explanation {
-  font-size: 0.9rem;
-  color: #94a3b8;
-  margin-top: 15px;
-  margin-bottom: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 10px;
-}
-
-/* Custom Color for Australia Section */
-.sector-accent {
-  color: #ffaa00;
-  border-left-color: #ffaa00;
-  margin-bottom: 30px;
-}
-
-.text-explanation {
-  color: #94a3b8;
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-}
-
-/* --- PERFECT CHART CENTERING --- */
+/* --- PERFECT CHART CENTERING & VEGA CONTAINERS --- */
 .vega-chart {
   width: 100%;
   max-width: 100%;
@@ -301,6 +307,8 @@ body::before {
   min-height: 380px;       /* Gives a consistent height to your dashboard cards */
   background: rgba(5, 7, 12, 0.4); /* Subtle dark inner backing */
   border-radius: 4px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  padding: 15px;
 }
 
 /* Force the actual Vega wrapper element to sit squarely in the middle */
@@ -315,6 +323,47 @@ body::before {
 .vega-embed svg {
   display: block;
   margin: 0 auto !important;
+}
+
+.chart-explanation-one {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 15px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 10px;
+  
+  max-width: 620px;     /* Restricts the horizontal width to clip around 12 words */
+  margin: 0 auto 5px auto; /* "auto" on left and right perfectly centers the block */
+  text-align: center;
+}
+
+.chart-explanation-two {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 15px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 10px;
+  
+  max-width: 500px;     /* Restricts the horizontal width to clip around 12 words */
+  margin: 0 auto 5px auto; /* "auto" on left and right perfectly centers the block */
+  text-align: center;
+}
+
+/* Custom Color for Australia Section */
+.sector-accent {
+  color: #ffaa00;
+  border-left-color: #ffaa00;
+  margin-bottom: 30px;
+}
+
+.text-explanation {
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 
 
@@ -367,4 +416,15 @@ body::before {
   color: #666;
   text-decoration: underline;
   word-break: break-all; 
+}
+
+
+/* ======================================================== */
+/* RESPONSIVE MOBILE BREAKPOINTS                           */
+/* ======================================================== */
+@media (max-width: 768px) {
+  .banner-one .banner-title,
+  .banner-two .banner-title {
+    font-size: 2rem; /* Clamps titles cleanly on smaller devices */
+  }
 }

@@ -1,12 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
-  "description": "Interactive line chart with year filter.",
-
+  "description": "Interactive line chart with year filter and annotations.",
   "data": {
     "url": "data/yearly-number-of-objects-launched-into-outer-space.csv"
   },
-
   "params": [
     {
       "name": "YearFilter",
@@ -20,7 +17,6 @@
       }
     }
   ],
-
   "transform": [
     {
       "filter": "datum.Entity === 'World' || datum.Code === 'OWID_WRL'"
@@ -29,30 +25,19 @@
       "filter": "datum.Year >= YearFilter"
     }
   ],
-
   "width": 400,
   "height": 300,
-
-  "mark": {
-    "type": "line",
-    "color": "#5591a9",
-    "strokeWidth": 2.5,
-    "tooltip": true
-  },
-
   "encoding": {
     "x": {
       "field": "Year",
       "type": "quantitative",
       "title": "Year"
     },
-
     "y": {
       "field": "Annual number of objects launched into outer space",
       "type": "quantitative",
       "title": "Objects Launched"
     },
-
     "tooltip": [
       {
         "field": "Year",
@@ -63,5 +48,71 @@
         "type": "quantitative"
       }
     ]
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#5591a9",
+        "strokeWidth": 2.5,
+        "tooltip": true
+      }
+    },
+    {   
+      "transform": [
+        {"filter": "datum.Year === 2020"}
+      ],
+      "mark": {
+        "type": "point",
+        "color": "#b22222",
+        "size": 50,
+        "filled": true
+      }
+    },
+    {
+      "description": "Layer 3: The text annotation label",
+      "transform": [
+        {"filter": "datum.Year === 2020"}
+      ],
+      "mark": {
+        "type": "text",
+        "text": "Starlink launches begin",
+        "align": "left",
+        "dx": 8,
+        "dy": -5,
+        "fontSize": 8,
+        "color": "#b22222",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "description": "Layer 2: A point highlighting the 2015 inflection point",
+      "transform": [
+        {"filter": "datum.Year === 2015"}
+      ],
+      "mark": {
+        "type": "point",
+        "color": "#b22222",
+        "size": 50,
+        "filled": true
+      }
+    },
+    {
+      "description": "Layer 3: The text annotation label",
+      "transform": [
+        {"filter": "datum.Year === 2015"}
+      ],
+      "mark": {
+        "type": "text",
+        "text": "New Space Era",
+        "align": "right",
+        "baseline": "bottom",
+        "dy": -10,
+        "fontSize": 8,
+        "color": "#b22222",
+        "fontWeight": "bold"
+      }
+    }
+  ],
+  "config": {"background": "#e7e9e9"}
 }

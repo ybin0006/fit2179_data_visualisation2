@@ -107,5 +107,6 @@
         }
       }
     }
-  ]
+  ],
+    "config": {"background": "#eeede5"}
 }
